@@ -15,7 +15,7 @@ interface Config {
 // Export the config object
 const config: Config = {
   MONGO_URL: process.env.MONGO_URL || "",
-  JWT_SECRET: process.env.JWT_SECRET || "Secret",
+  JWT_SECRET: process.env.JWT_SECRET || "",
   PORT: Number(process.env.PORT) || 5000,
 };
 
