@@ -1,4 +1,4 @@
-import { model, Schema } from  "mongoose"
+import { model, Schema, Types } from  "mongoose"
 
 
 const userSchema = new Schema({
@@ -7,6 +7,25 @@ const userSchema = new Schema({
     password : String
 })
 
-const UserModel = model( "user", userSchema)
+const contentSchema = new Schema({
+    title:String,
+    link: String,
+    tag:[{type:Types.ObjectId, ref:'Tag'}],
+    userId: {type:Types.ObjectId, ref:'user', required:true}
 
-export { UserModel }
+})
+
+const linkSchema = new Schema({
+    hash:String,
+    userId: {type:Types.ObjectId, ref:'user', required:true}
+})
+
+const UserModel = model( "user", userSchema)
+const contentModel = model("content", contentSchema) 
+const linkModel = model("link", linkSchema)
+
+export { 
+    UserModel,
+    contentModel,
+    linkModel
+}
